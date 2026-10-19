@@ -71,6 +71,7 @@
     padding-top:var(--tg-safe-top,0px);
     padding-bottom:var(--tg-safe-bottom,0px);
   }
+  :root.tg-app .web-only{display:none!important;}  /* ссылки «Открыть в Telegram» не нужны внутри самого Telegram */
   :root.tg-app header{top:var(--tg-safe-top,0px);}
   :root.tg-app .mobile-menu{inset:calc(68px + var(--tg-safe-top,0px)) 0 0 0;}
   :root.tg-app .floating-cta,
@@ -470,6 +471,7 @@
         <h2 id="hero-services-title">Что могу сделать</h2>
         <ul><li><a href="#pricing"><span class="hs-name">ИИ-помощник</span><span class="hs-desc">Отвечает клиентам по вашим материалам</span><span class="hs-price">30 000 ₽</span><span class="hs-time">10–15 рабочих дней</span></a></li><li><a href="#pricing"><span class="hs-name">Бот записи клиентов</span><span class="hs-desc">Выбор времени, подтверждения, уведомления</span><span class="hs-price">15 000 ₽</span><span class="hs-time">срок после согласования сценария</span></a></li><li><a href="#pricing"><span class="hs-name">Сайт / лендинг</span><span class="hs-desc">Страница под услугу с формой заявки</span><span class="hs-price">20 000 ₽</span><span class="hs-time">7–10 рабочих дней</span></a></li><li><a href="#pricing"><span class="hs-name">Веб-приложение</span><span class="hs-desc">Запись, заявки или учёт в браузере</span><span class="hs-price">60 000 ₽</span><span class="hs-time">3–5 недель</span></a></li></ul>
         <a href="#pricing" class="hs-all">Все цены и сроки →</a>
+        <a href="https://t.me/MChaika_bot" target="_blank" rel="noopener" class="hs-all web-only">Открыть в Telegram →</a>
       </aside>
     </div>
   </section>
@@ -862,6 +864,7 @@
     <a href="consent.html">Согласие на обработку данных</a>
     <a href="offer.html">Оферта</a>
     <span>
+      <a href="https://t.me/MChaika_bot" target="_blank" rel="noopener" class="web-only">Бот в Telegram</a><span class="web-only"> · </span>
       <a href="https://t.me/chajjka" target="_blank" rel="noopener">Telegram</a> ·
       <a href="https://wa.me/qr/DMPSFJSXFMJCN1" target="_blank" rel="noopener">WhatsApp</a> ·
       <a href="https://max.ru/u/f9LHodD0cOKe5VcnMMFVwcWTzk5WNKWvjQKJYUhw7-dAWXwwfCzy88hJlxM" target="_blank" rel="noopener">MAX</a> ·
