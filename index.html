@@ -521,9 +521,11 @@
       <div id="reviewResult" class="review-quiz" hidden aria-labelledby="review-result-title">
         <div class="eyebrow">Последний шаг</div>
         <h3 id="review-result-title" tabindex="-1">Отправьте запрос на разбор задачи</h3>
-        <p>Скопируйте сообщение и отправьте мне в Telegram или MAX. Я предложу подходящий сценарий автоматизации и следующий шаг. Запрос ещё не отправлен.</p>
+        <p>Нажмите «Продолжить в Telegram» — ответы появятся в сообщении Марине. В Telegram останется нажать «Отправить». Я предложу подходящий сценарий автоматизации и следующий шаг.</p>
         <textarea id="reviewMessage" rows="9" readonly aria-label="Ваш запрос на разбор задачи"></textarea>
-        <div class="quiz-actions"><button type="button" id="reviewCopy" class="btn btn-ghost">1. Скопировать запрос</button><a class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener">2. Отправить в Telegram ↗</a></div>
+        <div class="quiz-actions"><a id="reviewTelegram" class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener noreferrer">Продолжить в Telegram ↗</a></div>
+        <p class="quiz-note">Если Telegram открылся без текста или вы выбрали MAX, скопируйте запрос ниже.</p>
+        <button type="button" id="reviewCopy" class="btn btn-ghost">Скопировать запрос</button>
         <p class="quiz-note">Удобнее в MAX? <a href="https://max.ru/u/f9LHodD0cOKe5VcnMMFVwcWTzk5WNKWvjQKJYUhw7-dAWXwwfCzy88hJlxM" target="_blank" rel="noopener">Открыть MAX ↗</a> — вставьте тот же текст.</p>
         <p id="reviewCopyStatus" class="quiz-note" role="status" aria-live="polite"></p>
         <button type="button" id="reviewEdit" class="quiz-edit">Изменить ответы</button>
@@ -806,7 +808,8 @@
             <path d="M14 27l7 7 17-17"/>
           </svg>
           <h3>Сообщение готово</h3>
-          <p>Скопируйте текст и отправьте его мне в Telegram или MAX. Заявка ещё не отправлена.</p><textarea id="preparedMessage" rows="7" readonly aria-label="Подготовленное сообщение"></textarea><button type="button" class="btn btn-ghost" id="copyMessageBtn">Скопировать текст</button><a class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener">Открыть Telegram →</a>
+          <p>Нажмите «Продолжить в Telegram» — текст появится в сообщении Марине. В Telegram останется нажать «Отправить».</p><textarea id="preparedMessage" rows="7" readonly aria-label="Подготовленное сообщение"></textarea><a id="leadTelegram" class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener noreferrer">Продолжить в Telegram →</a>
+          <p>Если Telegram открылся без текста или вы выбрали MAX, скопируйте сообщение.</p><button type="button" class="btn btn-ghost" id="copyMessageBtn">Скопировать текст</button>
           <button type="button" class="btn btn-ghost" id="resetFormBtn">Изменить сообщение</button>
         </div>
 
@@ -1093,6 +1096,7 @@
     var message = 'Здравствуйте, Марина!\nИмя: ' + nameInput.value.trim() +
       '\nEmail: ' + emailInput.value.trim() + '\n\nЗадача: ' + msgInput.value.trim();
     document.getElementById('preparedMessage').value = message;
+    document.getElementById('leadTelegram').href = 'https://t.me/chajjka?text=' + encodeURIComponent(message);
     form.hidden = true;
     successPanel.hidden = false; successPanel.classList.add('show');
     document.getElementById('preparedMessage').focus();
@@ -1151,6 +1155,7 @@
       (!name.value.trim() ? name : details).focus(); return;
     }
     document.getElementById('reviewMessage').value = 'Здравствуйте, Марина! Хочу бесплатный разбор задачи.\n\nИмя: ' + name.value.trim() + '\nСфера: ' + form.querySelector('[name="business"]:checked').value + '\nЦель: ' + form.querySelector('[name="goal"]:checked').value + '\nПовторяющаяся задача: ' + details.value.trim() + '\nСайт или соцсети: ' + (document.getElementById('reviewLink').value.trim() || 'Пока нет');
+    document.getElementById('reviewTelegram').href = 'https://t.me/chajjka?text=' + encodeURIComponent(document.getElementById('reviewMessage').value);
     form.hidden = true;
     document.getElementById('reviewResult').hidden = false;
     document.getElementById('review-result-title').focus();
