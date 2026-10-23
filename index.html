@@ -7,6 +7,20 @@
 <title>Марина Чайка — ИИ-помощники, боты и сайты для малого бизнеса</title>
 <meta name="description" content="ИИ-помощники, боты записи, сайты и веб-приложения для малого бизнеса. Цена и состав работ фиксируются до старта, демо на каждом этапе. Лично веду проект от задачи до запуска.">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+async function sendWebsiteRequest(data) {
+  try {
+    var response = await fetch('https://mini-app-form.chajjka93.workers.dev/', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data), signal: AbortSignal.timeout(20000)
+    });
+    var result = await response.json();
+    if(!response.ok || result.ok !== true) throw new Error('Delivery failed');
+  } catch(error) {
+    throw new Error('Не удалось подтвердить отправку. Данные остались в форме. Попробуйте позже или напишите в Telegram.');
+  }
+}
+</script>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
   :root{
@@ -512,22 +526,17 @@
           <textarea id="reviewDetails" rows="3" maxlength="2000" placeholder="Например: отвечаю на вопросы о ценах и готовлю сообщения клиентам"></textarea>
           <label for="reviewLink">Сайт или соцсети, если есть</label>
           <input id="reviewLink" type="text" maxlength="500" placeholder="Ссылка — необязательно">
-          <p class="quiz-note">Контакт останется в Telegram, когда вы отправите запрос.</p>
+          <label for="reviewContact">Ваш Telegram, телефон или email для ответа</label>
+          <input id="reviewContact" type="text" maxlength="200" placeholder="Например, @username или email">
         </fieldset>
         <p id="quizError" class="quiz-error" role="alert"></p>
         <div class="quiz-actions"><button type="button" id="quizBack" class="btn btn-ghost" hidden>Назад</button><button type="submit" id="quizNext" class="btn btn-primary">Далее →</button></div>
-        <p class="quiz-note">Ответы останутся в браузере, пока вы сами не отправите запрос. <a href="privacy.html">Политика конфиденциальности</a></p>
+        <p class="quiz-note" id="quizPrivacyNote">При нажатии «Отправить» запрос будет отправлен Марине через Telegram-бота. <a href="privacy.html">Политика конфиденциальности</a></p>
       </form>
       <div id="reviewResult" class="review-quiz" hidden aria-labelledby="review-result-title">
-        <div class="eyebrow">Последний шаг</div>
-        <h3 id="review-result-title" tabindex="-1">Отправьте запрос на разбор задачи</h3>
-        <p>Нажмите «Продолжить в Telegram» — ответы появятся в сообщении Марине. В Telegram останется нажать «Отправить». Я предложу подходящий сценарий автоматизации и следующий шаг.</p>
-        <textarea id="reviewMessage" rows="9" readonly aria-label="Ваш запрос на разбор задачи"></textarea>
-        <div class="quiz-actions"><a id="reviewTelegram" class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener noreferrer">Продолжить в Telegram ↗</a></div>
-        <p class="quiz-note">Если Telegram открылся без текста или вы выбрали MAX, скопируйте запрос ниже.</p>
-        <button type="button" id="reviewCopy" class="btn btn-ghost">Скопировать запрос</button>
-        <p class="quiz-note">Удобнее в MAX? <a href="https://max.ru/u/f9LHodD0cOKe5VcnMMFVwcWTzk5WNKWvjQKJYUhw7-dAWXwwfCzy88hJlxM" target="_blank" rel="noopener">Открыть MAX ↗</a> — вставьте тот же текст.</p>
-        <p id="reviewCopyStatus" class="quiz-note" role="status" aria-live="polite"></p>
+        <div class="eyebrow">Готово</div>
+        <h3 id="review-result-title" tabindex="-1">Запрос отправлен!</h3>
+        <p>Марина получила ваши ответы в Telegram и свяжется с вами по указанному контакту.</p>
         <button type="button" id="reviewEdit" class="quiz-edit">Изменить ответы</button>
       </div>
     </div>
@@ -782,24 +791,24 @@
         <form class="form-grid" id="leadForm" novalidate>
           <div>
             <label for="f-name">Имя</label>
-            <input type="text" autocomplete="name" id="f-name" aria-describedby="f-name-error" name="name" placeholder="Как к вам обращаться" required minlength="2">
+            <input type="text" autocomplete="name" maxlength="100" id="f-name" aria-describedby="f-name-error" name="name" placeholder="Как к вам обращаться" required minlength="2">
             <div class="field-err" id="f-name-error" data-for="f-name"></div>
           </div>
           <div>
             <label for="f-email">Email</label>
-            <input type="email" autocomplete="email" id="f-email" aria-describedby="f-email-error" name="email" placeholder="you@company.ru" required>
+            <input type="email" autocomplete="email" maxlength="254" id="f-email" aria-describedby="f-email-error" name="email" placeholder="you@company.ru" required>
             <div class="field-err" id="f-email-error" data-for="f-email"></div>
           </div>
           <div>
             <label for="f-msg">Сообщение</label>
-            <textarea id="f-msg" aria-describedby="f-msg-error" name="message" rows="4" placeholder="Чем занимаетесь? Что хотите улучшить? Есть ли ориентир по бюджету?" required minlength="5"></textarea>
+            <textarea maxlength="2500" id="f-msg" aria-describedby="f-msg-error" name="message" rows="4" placeholder="Чем занимаетесь? Что хотите улучшить? Есть ли ориентир по бюджету?" required minlength="5"></textarea>
             <div class="field-err" id="f-msg-error" data-for="f-msg"></div>
           </div>
           <div class="submit-row">
-            <button type="submit" class="btn btn-primary" id="submitBtn">Подготовить сообщение</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Отправить заявку</button>
             <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
           </div>
-          <p style="margin:0;font-size:13.5px;color:var(--text-dim);">Форма готовит сообщение в вашем браузере. Данные попадут ко мне только после того, как вы сами отправите сообщение. Подробнее — в <a href="privacy.html">политике конфиденциальности</a> и <a href="consent.html">согласии на обработку данных</a>. Условия работы — в <a href="offer.html">оферте</a>.</p>
+          <p id="leadPrivacyNote" style="margin:0;font-size:13.5px;color:var(--text-dim);">При нажатии «Отправить заявку» данные будут отправлены Марине через Telegram-бота. Подробнее — в <a href="privacy.html">политике конфиденциальности</a> и <a href="consent.html">согласии на обработку данных</a>. Условия работы — в <a href="offer.html">оферте</a>.</p>
         </form>
 
         <div class="success-panel" id="successPanel" hidden>
@@ -807,10 +816,9 @@
             <circle cx="26" cy="26" r="24"/>
             <path d="M14 27l7 7 17-17"/>
           </svg>
-          <h3>Сообщение готово</h3>
-          <p>Нажмите «Продолжить в Telegram» — текст появится в сообщении Марине. В Telegram останется нажать «Отправить».</p><textarea id="preparedMessage" rows="7" readonly aria-label="Подготовленное сообщение"></textarea><a id="leadTelegram" class="btn btn-primary" href="https://t.me/chajjka" target="_blank" rel="noopener noreferrer">Продолжить в Telegram →</a>
-          <p>Если Telegram открылся без текста или вы выбрали MAX, скопируйте сообщение.</p><button type="button" class="btn btn-ghost" id="copyMessageBtn">Скопировать текст</button>
-          <button type="button" class="btn btn-ghost" id="resetFormBtn">Изменить сообщение</button>
+          <h3 tabindex="-1" id="lead-success-title">Заявка отправлена!</h3>
+          <p>Марина получила заявку в Telegram и ответит на указанный email.</p>
+          <button type="button" class="btn btn-ghost" id="resetFormBtn">Новая заявка</button>
         </div>
 
         <div class="alt-contact">
@@ -1059,7 +1067,7 @@
     });
   });
 
-  /* Validate and prepare a message for manual delivery in Telegram. */
+  /* Confirm delivery before showing success. */
   var form = document.getElementById('leadForm');
   var submitBtn = document.getElementById('submitBtn');
   var statusEl = document.getElementById('formStatus');
@@ -1085,7 +1093,8 @@
     input.addEventListener('blur', function(){ validateField(input); });
   });
 
-  form.addEventListener('submit', function(e){
+  form.addEventListener('submit', async function(e){
+    if(submitBtn.disabled){ e.preventDefault(); return; }
     e.preventDefault();
     var nameInput = document.getElementById('f-name');
     var emailInput = document.getElementById('f-email');
@@ -1093,29 +1102,20 @@
     var valid = [nameInput, emailInput, msgInput].map(validateField).every(Boolean);
     if(!valid){ form.querySelector('.err').focus(); return; }
 
-    var message = 'Здравствуйте, Марина!\nИмя: ' + nameInput.value.trim() +
-      '\nEmail: ' + emailInput.value.trim() + '\n\nЗадача: ' + msgInput.value.trim();
-    document.getElementById('preparedMessage').value = message;
-    document.getElementById('leadTelegram').href = 'https://t.me/chajjka?text=' + encodeURIComponent(message);
-    form.hidden = true;
-    successPanel.hidden = false; successPanel.classList.add('show');
-    document.getElementById('preparedMessage').focus();
+    submitBtn.disabled = true; submitBtn.textContent = 'Отправляем…';
+    statusEl.textContent = '';
+    try {
+      await sendWebsiteRequest({ type: 'lead', name: nameInput.value.trim(), email: emailInput.value.trim(), message: msgInput.value.trim() });
+      form.hidden = true;
+      successPanel.hidden = false; successPanel.classList.add('show');
+      document.getElementById('lead-success-title').focus();
+    } catch(error) { statusEl.textContent = error.message; }
+    finally { submitBtn.disabled = false; submitBtn.textContent = 'Отправить заявку'; }
   });
 
-  document.getElementById('copyMessageBtn').addEventListener('click', async function(){
-    var messageField = document.getElementById('preparedMessage');
-    try {
-      if(!navigator.clipboard) throw new Error('Clipboard unavailable');
-      await navigator.clipboard.writeText(messageField.value);
-      this.textContent = 'Текст скопирован';
-    } catch(error) {
-      messageField.focus();
-      messageField.select();
-      this.textContent = 'Скопируйте выделенный текст';
-    }
-  });
   resetFormBtn.addEventListener('click', function(){
-    document.getElementById('copyMessageBtn').textContent = 'Скопировать текст';
+    form.reset();
+    statusEl.textContent = '';
     ['f-name','f-email','f-msg'].forEach(function(id){ setError(document.getElementById(id), ''); });
     successPanel.hidden = true; successPanel.classList.remove('show');
     form.hidden = false; document.getElementById('f-name').focus();
@@ -1134,11 +1134,15 @@
     steps.forEach(function(step, i){ step.hidden = i !== current; });
     document.getElementById('quizProgress').textContent = 'Шаг ' + (current + 1) + ' из 3 · ' + titles[current];
     document.getElementById('quizBack').hidden = current === 0;
-    document.getElementById('quizNext').textContent = current === 2 ? 'Подготовить запрос →' : 'Далее →';
+    var tg = window.Telegram && window.Telegram.WebApp;
+    document.getElementById('quizNext').textContent = current === 2
+      ? 'Отправить запрос →'
+      : 'Далее →';
     error.textContent = '';
     if(focus) steps[current].querySelector('input').focus();
   }
-  form.addEventListener('submit', function(event){
+  form.addEventListener('submit', async function(event){
+    if(document.getElementById('quizNext').disabled){ event.preventDefault(); return; }
     event.preventDefault();
     if(current < 2){
       if(!steps[current].querySelector('input:checked')){
@@ -1154,22 +1158,35 @@
       error.textContent = 'Укажите имя и кратко расскажите о бизнесе.';
       (!name.value.trim() ? name : details).focus(); return;
     }
-    document.getElementById('reviewMessage').value = 'Здравствуйте, Марина! Хочу бесплатный разбор задачи.\n\nИмя: ' + name.value.trim() + '\nСфера: ' + form.querySelector('[name="business"]:checked').value + '\nЦель: ' + form.querySelector('[name="goal"]:checked').value + '\nПовторяющаяся задача: ' + details.value.trim() + '\nСайт или соцсети: ' + (document.getElementById('reviewLink').value.trim() || 'Пока нет');
-    document.getElementById('reviewTelegram').href = 'https://t.me/chajjka?text=' + encodeURIComponent(document.getElementById('reviewMessage').value);
-    form.hidden = true;
-    document.getElementById('reviewResult').hidden = false;
-    document.getElementById('review-result-title').focus();
+    var contact = document.getElementById('reviewContact');
+    if(!contact.value.trim()){ error.textContent = 'Укажите контакт для ответа.'; contact.focus(); return; }
+    var reviewData = {
+      contact: contact.value.trim(),
+      type: 'review',
+      name: name.value.trim(),
+      business: form.querySelector('[name="business"]:checked').value,
+      goal: form.querySelector('[name="goal"]:checked').value,
+      details: details.value.trim(),
+      link: document.getElementById('reviewLink').value.trim()
+    };
+    var next = document.getElementById('quizNext');
+    var back = document.getElementById('quizBack');
+    next.disabled = true; back.disabled = true;
+    next.textContent = 'Отправляем…'; error.textContent = '';
+    try {
+      await sendWebsiteRequest(reviewData);
+      form.hidden = true;
+      document.getElementById('reviewResult').hidden = false;
+      document.getElementById('review-result-title').focus();
+    } catch(sendError) { error.textContent = sendError.message; }
+    finally { next.disabled = false; back.disabled = false; next.textContent = 'Отправить запрос →'; }
   });
   document.getElementById('quizBack').addEventListener('click', function(){ current--; showStep(true); });
   document.getElementById('reviewEdit').addEventListener('click', function(){
     document.getElementById('reviewResult').hidden = true; form.hidden = false;
-    document.getElementById('reviewCopyStatus').textContent = ''; showStep(true);
+    showStep(true);
   });
-  document.getElementById('reviewCopy').addEventListener('click', async function(){
-    var message = document.getElementById('reviewMessage');
-    try { await navigator.clipboard.writeText(message.value); document.getElementById('reviewCopyStatus').textContent = 'Скопировано. Откройте Telegram, вставьте текст и отправьте.'; }
-    catch(e){ message.focus(); message.select(); document.getElementById('reviewCopyStatus').textContent = 'Скопируйте выделенный текст и отправьте в Telegram.'; }
-  });
+
 })();
 </script>
 
@@ -1184,6 +1201,9 @@
   root.classList.add('tg-app');
   tg.ready();
   tg.expand();
+  document.getElementById('submitBtn').textContent = 'Отправить заявку';
+
+
 
   /* Светлая тема остаётся основной: цвета Telegram не подставляем, только красим системную шапку */
   try { tg.setHeaderColor('#FAFAFC'); tg.setBackgroundColor('#FAFAFC'); } catch(e){}
