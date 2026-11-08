@@ -10,7 +10,7 @@
 <script>
 async function sendWebsiteRequest(data) {
   try {
-    var response = await fetch('https://mini-app-form.chajjka93.workers.dev/', {
+    var response = await fetch('https://form-service-chajjka.msk1.amvera.tech/', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data), signal: AbortSignal.timeout(20000)
     });
