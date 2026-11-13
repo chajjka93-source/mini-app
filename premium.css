@@ -44,3 +44,14 @@ body{font-size:18px}body,button,input,textarea{font-family:var(--font-body)}h1,h
 .mobile-menu .btn-primary{color:var(--button-text)}
 .cta-write{margin-top:40px;padding:24px 28px;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}.cta-write strong{font-size:20px}.cta-write p{margin:4px 0 0;color:var(--text-dim);font-size:16px}.cta-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-start}.cta-alt{font-size:15px;color:var(--text-dim)}.cta-alt a,.cta-inline a{color:var(--text);font-weight:600}.cta-inline{margin:20px 0 0;font-size:17px}
 @media(max-width:600px){.cta-write{padding:20px 18px}.cta-actions,.cta-actions .btn{width:100%}}
+
+/* градиентный вариант (макет) */
+:root,:root[data-theme="light"]{--g1:#c9b3f0;--g2:#eab6d9;--g3:#a6dfe0;--button-bg:#7c3aed;--button-hover:#6d28d9;--accent1:#7c3aed;--focus:#7c3aed;--surface-2:#f4ecfb}
+body{background:linear-gradient(135deg,#efe6fb 0%,#fbe8f3 50%,#e3f6f6 100%) fixed}
+header{background:transparent}
+.hero{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 50%,var(--g3) 100%);border-radius:0 0 40px 40px}
+.btn-primary,.launch-offer .btn-primary{background:linear-gradient(135deg,#8b5cf6,#d946ef 55%,#14b8a6);color:#fff}
+.btn-primary:hover,.launch-offer .btn-primary:hover{filter:brightness(1.08);background:linear-gradient(135deg,#8b5cf6,#d946ef 55%,#14b8a6)}
+#services,#process,#contact,#review{background:transparent}
+.card,.price-card{background:#ffffffb3!important;border-radius:16px!important}
+.launch-offer{background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3))}
