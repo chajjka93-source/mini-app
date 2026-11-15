@@ -727,6 +727,7 @@ a { color: inherit; }
 .work--2 { grid-column: 9 / span 4; margin-top: clamp(24px, 6vw, 80px); }
 .work--3 { grid-column: 2 / span 5; }
 .work--4 { grid-column: 8 / span 4; }
+.work--5 { grid-column: 4 / span 6; }
 
 .work h3 {
   margin-top: 20px;
@@ -1009,6 +1010,23 @@ a { color: inherit; }
   .works { gap: 40px 20px; }
 }
 
+@media (max-width: 1000px) {
+  .works {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .work--1,
+  .work--2,
+  .work--3,
+  .work--4,
+  .work--5 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 900px) {
   html { scroll-padding-top: 148px; }
 
@@ -1063,7 +1081,8 @@ a { color: inherit; }
   .work--1,
   .work--2,
   .work--3,
-  .work--4 {
+  .work--4,
+  .work--5 {
     grid-column: 1 / -1;
     margin-top: 0;
     max-width: 600px;
