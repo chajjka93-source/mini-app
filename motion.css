@@ -41,7 +41,7 @@ html body :is(.card,.case-card,.price-card,.trust-item,.step,.stat){
   transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s,background-color .35s;
 }
 @media (hover:hover){
-  html body :is(.card,.case-card):hover{
+  html body .card:hover{
     transform:translateY(-8px);
     border-color:var(--accent);
     box-shadow:0 22px 44px -18px rgba(27,42,65,.38),0 0 0 1px var(--accent);
@@ -59,6 +59,11 @@ html body :is(.card,.case-card,.price-card,.trust-item,.step,.stat){
   html body .nav-links a{transition:color .2s}
 }
 html body :is(.btn,.faq-q,a):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* кейсы без собственных полей: рамки нет, чтобы не липла к тексту — только подъём и мягкая тень */
+@media (hover:hover){
+  html body .case-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:none;filter:drop-shadow(0 18px 24px rgba(27,42,65,.14))}
+}
 
 /* ---------- 3. Менее «по линейке» (только широкий экран) ---------- */
 @media (min-width:1051px){
