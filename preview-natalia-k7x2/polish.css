@@ -37,3 +37,6 @@
   .hero__figure{transform:rotate(1.2deg)}
   .about__photo{transform:rotate(-1.4deg)}
 }
+
+/* переходы по якорям на телефоне — без долгой плавной прокрутки, чтобы страница не «пролетала» мимо цели */
+@media (max-width:900px){html{scroll-behavior:auto}}
