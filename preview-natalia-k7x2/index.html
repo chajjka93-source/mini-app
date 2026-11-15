@@ -491,10 +491,11 @@
   var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(rm||!('IntersectionObserver' in window))return;
   var h=document.documentElement;h.classList.add('mo');
-  var sel='.section__head,.hero__art,.about__photo,.about__text,.fig,.services li,.price,.why__quote,.contact,.edu li,.item';
+  var sel='.section__head,.hero__art,.about__photo,.about__text,.fig,.services li,.price,.why__quote,.contact,.edu li,.item,.portrait,.work__photo,.work__text,.works__note,.merch,.frame';
   var els=document.querySelectorAll(sel);
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -4% 0px'});
   els.forEach(function(el){
+    if(el.parentElement.closest('.rv,.fig,.portrait,.work__photo,.hero__figure')&&!el.matches('.rv'))return;
     var sib=Array.prototype.indexOf.call(el.parentNode.children,el);
     el.style.setProperty('--d',Math.min(sib,4)*90+'ms');
     el.classList.add('rv');io.observe(el);
