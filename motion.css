@@ -60,9 +60,13 @@ html body :is(.card,.case-card,.price-card,.trust-item,.step,.stat){
 }
 html body :is(.btn,.faq-q,a):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
-/* кейсы без собственных полей: рамки нет, чтобы не липла к тексту — только подъём и мягкая тень */
+/* кейсы без собственных полей: рамка рисуется чуть шире карточки (отступ 20 px от текста) */
+html body .case-card{position:relative}
+html body .case-card::after{content:"";position:absolute;inset:-20px;border:1.5px solid var(--accent);border-radius:22px;
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;transform:scale(.985)}
 @media (hover:hover){
-  html body .case-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:none;filter:drop-shadow(0 18px 24px rgba(27,42,65,.14))}
+  html body .case-card:hover{transform:translateY(-4px);border-color:transparent;box-shadow:none}
+  html body .case-card:hover::after{opacity:1;transform:none;box-shadow:0 22px 44px -22px rgba(27,42,65,.35)}
 }
 
 /* ---------- 3. Менее «по линейке» (только широкий экран) ---------- */
