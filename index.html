@@ -431,6 +431,7 @@ async function sendWebsiteRequest(data) {
 <link rel="stylesheet" href="assets/fonts/typo-fonts.css">
 <link rel="stylesheet" href="typo.css?v=20261115">
 <link rel="stylesheet" href="palette.css?v=20261115">
+<link rel="stylesheet" href="motion.css?v=20261115">
 </head>
 <body>
 <a class="skip-link" href="#top">Перейти к содержанию</a>
@@ -992,11 +993,13 @@ async function sendWebsiteRequest(data) {
 
   /* reveal on scroll */
   if('IntersectionObserver' in window && !reduceMotion){
+    document.documentElement.classList.add('mo');
+    document.querySelectorAll('.bento > .card, .about-portrait, .about-content').forEach(function(el){ el.classList.add('reveal'); });
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, {threshold:.15});
+    }, {threshold:.1});
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
