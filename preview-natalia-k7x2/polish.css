@@ -1,0 +1,39 @@
+/* polish.css — движение, hover, читаемость. Поверх style.css. */
+
+/* ---- читаемость: мелкие подписи крупнее ---- */
+.cap,.work__photo-cap,.about__role,.portrait__desc+*,.kicker{letter-spacing:.12em}
+.cap{font-size:.78rem}
+.work__photo-cap{font-size:.8rem}
+
+/* ---- hero: меньше пустоты под блоком ---- */
+.hero{padding-bottom:clamp(24px,4vw,52px)}
+
+/* ---- появление по очереди ---- */
+@media (prefers-reduced-motion:no-preference){
+  html.mo .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms)}
+  html.mo .rv.in{opacity:1;transform:none}
+  html.mo .hero__figure.rv{transform:translateY(20px) rotate(1.2deg)}
+  html.mo .hero__figure.rv.in{transform:none}
+}
+
+/* ---- hover: рамки с работами «приподнимаются» ---- */
+.fig{transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.fig img{transition:transform .8s var(--ease)}
+@media (hover:hover){
+  .fig:hover{transform:translateY(-5px)}
+  .fig:hover img{transform:scale(1.025)}
+  .fig{overflow:visible}
+  .price,.service{transition:background-color .3s,padding-left .35s var(--ease)}
+  .price:hover,.service:hover{padding-left:12px;background:rgba(176,141,87,.08)}
+  .service:hover .service__num,.price:hover .price__value{color:var(--red)}
+  .btn{transition:transform .25s var(--ease),box-shadow .25s,background-color .25s,color .25s,border-color .25s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 24px -12px rgba(163,38,42,.5)}
+  .btn:active{transform:none;box-shadow:none}
+}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---- мягкая «живость»: фото-рамки чуть смещены ---- */
+@media (min-width:900px){
+  .hero__figure{transform:rotate(1.2deg)}
+  .about__photo{transform:rotate(-1.4deg)}
+}

@@ -8,10 +8,11 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#F6F0E6">
   <link rel="icon" href="img/p1.jpg" type="image/jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Golos+Text:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/cormorant-garamond-normal-500-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="polish.css?v=1">
+  <meta name="theme-color" content="#F6F0E6">
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -478,5 +479,20 @@
       <p><a href="privacy.html">Политика</a> · <a href="offer.html">Оферта</a> · <a href="consent.html">Согласие</a></p>
     </div>
   </footer>
+<script>
+(function(){
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(rm||!('IntersectionObserver' in window))return;
+  var h=document.documentElement;h.classList.add('mo');
+  var sel='.section__head,.hero__art,.about__photo,.about__text,.fig,.services li,.price,.why__quote,.contact,.edu li,.item';
+  var els=document.querySelectorAll(sel);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+  els.forEach(function(el){
+    var sib=Array.prototype.indexOf.call(el.parentNode.children,el);
+    el.style.setProperty('--d',Math.min(sib,4)*90+'ms');
+    el.classList.add('rv');io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
