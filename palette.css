@@ -1,0 +1,82 @@
+/* Палитра: чернильный синий (фирменный) + терракота (акцент) на тёплом молочном фоне.
+   Все цвета сайта собраны здесь. Подключается последним, после premium.css и typo.css. */
+:root,:root[data-theme="light"]{
+  --bg:var(--paper);--surface:var(--card);--surface-2:var(--paper-2);
+  --text:var(--ink);--text-dim:var(--ink-dim);
+  --accent1:var(--brand);--accent2:var(--brand);--accent2-text:var(--brand);
+  --accent3:var(--accent);--accent4:var(--accent);
+  --border:var(--line);--border-strong:var(--line-strong);
+  --focus:var(--accent);
+  --button-bg:var(--accent);--button-hover:var(--accent-hover);
+  --offer-bg:var(--accent-soft);--offer-text:var(--brand);
+  --brand:#1B2A41;        /* фирменный: чернильный синий — заголовки, лого, рамки */
+  --brand-hover:#2A3E5C;
+  --accent:#C2410C;       /* острый акцент: кнопки, важные элементы */
+  --accent-hover:#9A3412;
+  --accent-soft:#FBE6D8;  /* мягкая подложка акцента (плашка «в разработке», оффер) */
+  --paper:#FBF7F1;        /* фон страницы: тёплое молоко */
+  --paper-2:#F3EBE0;      /* фон чередующихся секций */
+  --card:#FFFFFF;
+  --ink:#1B2A41;
+  --ink-dim:#4B5668;
+  --line:#DDD3C4;
+  --line-strong:#8A8478;
+
+  --success:#1F6B4A;--success-text:#1F6B4A;--danger:#A3200F;--focus:var(--accent);
+  --button-text:#fff;
+  --shadow:none;
+}
+:root[data-theme="dark"]{
+  --bg:var(--paper);--surface:var(--card);--surface-2:var(--paper-2);
+  --text:var(--ink);--text-dim:var(--ink-dim);
+  --accent1:var(--brand);--accent2:var(--brand);--accent2-text:var(--brand);
+  --accent3:var(--accent);--accent4:var(--accent);
+  --border:var(--line);--border-strong:var(--line-strong);
+  --focus:var(--accent);
+  --button-bg:var(--accent);--button-hover:var(--accent-hover);
+  --offer-bg:var(--accent-soft);--offer-text:var(--brand);
+  --brand:#E8DCCB;--brand-hover:#FFF3E2;
+  --accent:#FF9A62;--accent-hover:#FFB88F;--accent-soft:#2C3A55;
+  --paper:#111A2B;--paper-2:#18243A;--card:#1D2B45;
+  --ink:#F6F1E9;--ink-dim:#C9D1DE;--line:#3A4B69;--line-strong:#8795B0;
+
+  --success:#7EDDB0;--success-text:#7EDDB0;--danger:#FFABAB;
+  --button-text:#111A2B;
+  --offer-text:var(--ink);
+}
+
+/* фон без градиентов и бликов */
+html body{background:var(--bg)}
+.hero-bg,.glow,.blob1,.blob2,.blob3,.blob4{display:none!important}
+#progress{background:var(--accent)!important}
+
+/* кнопки: акцент заполнен, вторичная — контур фирменного цвета */
+html body .btn-primary,html body .launch-offer .btn-primary,html body .floating-cta{background:var(--button-bg);color:var(--button-text);box-shadow:none}
+html body .btn-primary:hover,html body .launch-offer .btn-primary:hover{background:var(--button-hover);color:var(--button-text)}
+html body .btn:not(.btn-primary){color:var(--brand);border-color:var(--brand);background:transparent}
+html body .btn:not(.btn-primary):hover{background:var(--brand);color:var(--paper)}
+html body .btn:hover{box-shadow:0 8px 18px rgba(27,42,65,.16)}
+html body .btn:focus-visible,html body a:focus-visible,html body button:focus-visible,html body input:focus-visible,html body textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* заголовки и лого — фирменный цвет */
+html body h1,html body h2,html body h3,html body h4,html body .logo,html body .logo span,html body .price-value,html body .stat-value{color:var(--brand);background:none;-webkit-text-fill-color:currentColor}
+html body .hero h1{background:none;-webkit-text-fill-color:currentColor;color:var(--brand)}
+
+/* ссылки, иконки, акценты */
+html body a{color:var(--brand)}
+html body a:hover{color:var(--accent)}
+html body .btn,html body .btn:hover{text-decoration:none}
+html body .card-icon,html body .card:nth-child(n) .card-icon{background:none;color:var(--accent)}
+html body .step-num,html body .tag,html body .price-time{color:var(--brand);border-color:var(--line-strong)}
+html body .step{border-top-color:var(--brand)}
+html body .hero .sub,html body .hero-services li{color:var(--text-dim)}
+html body .hero-review-offer{border-left-color:var(--accent)}
+html body .case-status--development{background:var(--accent-soft);color:var(--brand)}
+html body .launch-offer{background:var(--offer-bg);color:var(--offer-text)}
+html body .launch-offer h2,html body .launch-offer p,html body .launch-offer .eyebrow,html body .offer-caption,html body .offer-original,html body .offer-price{color:var(--offer-text);-webkit-text-fill-color:currentColor}
+html body .offer-action{border-color:var(--line-strong)}
+html body .review-example::before{background:var(--accent-soft)}
+html body .review-example::after{background:var(--accent)}
+html body .quiz-choice:has(input:checked){border-color:var(--brand);background:var(--paper-2)}
+html body input[type="radio"],html body input[type="checkbox"]{accent-color:var(--accent)}
+html body .faq-q{color:var(--brand)}
