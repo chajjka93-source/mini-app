@@ -80,3 +80,7 @@ html body :is(.btn,.faq-q,a):focus-visible{outline:3px solid var(--accent);outli
   html body .about-portrait{transform:none;margin:0 auto;box-shadow:10px 10px 0 var(--accent-soft)}
   html.mo body .about-portrait.reveal,html.mo body .about-portrait.reveal.in{transform:none}
 }
+@media (max-width:820px){
+  html.mo body .about-content.reveal{transform:translateY(28px)}
+  html.mo body .about-content.reveal.in{transform:none}
+}
