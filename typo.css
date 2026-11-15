@@ -1,0 +1,40 @@
+/* Типографика: Unbounded (заголовки) + Onest (текст и кнопки). Подключается после premium.css. */
+:root,:root[data-theme="light"],:root[data-theme="dark"]{
+  --font-head:'Unbounded','Onest',sans-serif;
+  --font-body:'Onest',sans-serif;
+  --font-mono:'Onest',sans-serif;
+}
+html body{font-family:var(--font-body);font-size:18px;line-height:1.65;font-feature-settings:"kern","liga"}
+html body p,html body li{font-family:var(--font-body)}
+
+/* заголовки: Unbounded широкий, поэтому размер меньше, трекинг мягче */
+html body h1,html body h2,html body h3,html body h4{font-family:var(--font-head);font-weight:500;letter-spacing:-.015em;line-height:1.16;text-wrap:balance}
+html body .hero h1{font-size:clamp(26px,3.1vw,40px);font-weight:600;line-height:1.12;letter-spacing:-.02em}
+html body .section-head h2,html body .review-copy h2,html body section h2{font-size:clamp(25px,3.2vw,40px);line-height:1.15}
+html body .card h3,html body .case h3,html body section h3{font-size:clamp(19px,1.9vw,23px);line-height:1.25;font-weight:500}
+html body h4,html body .step h4,html body .trust-item h4{font-size:16px;font-weight:500;letter-spacing:-.005em;line-height:1.3}
+html body .logo{font-family:var(--font-head);font-weight:600;letter-spacing:-.02em}
+html body .price-value,html body .stat-value{font-family:var(--font-head);font-weight:500;letter-spacing:-.02em}
+html body .faq-q{font-family:var(--font-body);font-weight:500;font-size:17px}
+
+/* основной текст */
+html body .hero .sub,html body .section-head p{font-size:19px;line-height:1.6}
+html body .eyebrow,html body .trust-line,html body label,html body .quiz-progress,html body .step-meta,html body .price-time,html body .tag,html body .case-status{font-family:var(--font-body);font-weight:500}
+html body label{text-transform:none;letter-spacing:0;font-size:15px}
+html body input,html body textarea,html body select{font-family:var(--font-body)}
+
+/* кнопки */
+html body .btn,html body button,html body .btn-primary,html body .btn-ghost{font-family:var(--font-body);font-weight:600;letter-spacing:.005em}
+
+html body .launch-offer h2{font-size:clamp(24px,2.9vw,36px);line-height:1.18}
+@media(max-width:820px){
+  html body .launch-offer h2{font-size:clamp(23px,5vw,30px)}
+  html body .hero h1{font-size:clamp(26px,5.4vw,38px)}
+  html body .section-head h2,html body .review-copy h2,html body section h2{font-size:clamp(23px,5.4vw,32px)}
+}
+@media(max-width:600px){
+  html body{font-size:17px}
+  html body .hero h1{font-size:clamp(23px,6.1vw,30px)}
+  html body .section-head h2,html body .review-copy h2,html body section h2{font-size:clamp(22px,6.2vw,28px)}
+  html body .card h3,html body section h3{font-size:19px}
+}
