@@ -32,21 +32,15 @@ html body #faq .wrap>*,html body #pricing .price-note{max-width:860px;margin-inl
   html body section{padding:44px 0}
   html body .cases{gap:34px}
 }
-/* Мобильная версия: горизонтальные ленты вместо длинных столбцов */
+/* Мобильная версия: кейсы столбцом, скриншоты Direct Reports лентой */
 @media(max-width:600px){
-  html body .cases{display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);box-sizing:border-box;padding:0 22px 18px;-webkit-overflow-scrolling:touch}
-  html body .cases>.case-card{flex:0 0 calc(100vw - 64px);min-width:0;max-width:340px;scroll-snap-align:start;scroll-margin-left:22px;display:flex;flex-direction:column;gap:16px;border-top:0;padding-top:0}
-  html body .cases>.case-card:first-child{flex-basis:calc(100vw - 44px);max-width:none}
-  html body .case-card :is(p,h3){max-width:100%}
-  html body .case-card--telegram .telegram-preview{order:1;max-width:none;width:100%}
+  html body .cases{display:flex;flex-direction:column;gap:40px}
+  html body .case-card--telegram{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line);padding-top:32px}
+  html body .case-card--telegram .telegram-preview{order:1;max-width:260px;width:100%;align-self:center;padding:14px}
   html body .case-card--telegram>div{order:2}
-  html body .case-card--telegram>.btn{order:3}
+  html body .case-card--telegram>.btn{order:3;width:100%}
   html body .case-card .screenshots-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px}
   html body .case-card .screenshot-link{flex:0 0 78%;scroll-snap-align:start}
   html body .case-card .project-preview{padding:12px}
-}
-@media(max-width:600px){html body .cases>.case-card.reveal{opacity:1!important;transform:none!important;transition:none!important}}
-@media(max-width:600px){
-  html body .cases{gap:30px;align-items:flex-start}
-  html body #case .section-head p::after{content:"Листайте кейсы вбок →";display:block;margin-top:10px;font-size:15px;font-weight:600;color:var(--accent)}
+  html body .cases>.case-card.reveal{opacity:1!important;transform:none!important;transition:none!important}
 }
