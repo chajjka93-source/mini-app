@@ -46,3 +46,7 @@ html body #faq .wrap>*,html body #pricing .price-note{max-width:860px;margin-inl
   html body .case-card .project-preview{padding:12px}
 }
 @media(max-width:600px){html body .cases>.case-card.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media(max-width:600px){
+  html body .cases{gap:30px;align-items:flex-start}
+  html body #case .section-head p::after{content:"Листайте кейсы вбок →";display:block;margin-top:10px;font-size:15px;font-weight:600;color:var(--accent)}
+}
