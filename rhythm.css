@@ -1,0 +1,35 @@
+/* Ритм страницы: кейсы полосой, цены ценниками, контраст мелких подписей. Подключается последним. */
+@media(min-width:1051px){
+  html body .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 44px;align-items:start}
+  html body .cases>.case-card:first-child{grid-column:1/-1}
+  html body .case-card--telegram{display:flex;flex-direction:column;gap:22px;border-top:0;padding-top:0}
+  html body .case-card--telegram>div{order:2}
+  html body .case-card--telegram>.btn{order:3}
+  html body .case-card--telegram .telegram-preview{order:1;width:100%;max-width:none;padding:20px 20px 16px;align-items:center}
+  html body .case-card--telegram .telegram-screen{width:min(100%,210px);max-height:380px}
+  html body .case-card--telegram h3{font-size:24px}
+  html body .case-card--telegram p{font-size:16px}
+}
+@media(min-width:601px) and (max-width:1050px){
+  html body .case-card--telegram{grid-template-columns:1fr .7fr}
+}
+/* ценник */
+html body .price-card{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:6px 6px 14px 14px;padding:30px 26px 28px}
+html body .price-card.featured{border-top-color:var(--accent)}
+html body .price-card .price-value{font-family:"Unbounded",sans-serif;font-weight:600;font-size:clamp(26px,2.4vw,34px);letter-spacing:-.02em;color:var(--brand);line-height:1.1;padding-bottom:14px;margin-bottom:14px;border-bottom:2px dashed var(--line-strong)}
+html body .price-card.featured .price-value{color:var(--accent)}
+html body .price-card .price-time{font-size:15px;color:var(--text-dim);margin-bottom:16px}
+@media(max-width:600px){html body .price-card{padding:26px 22px}}
+/* контраст и размер мелких подписей */
+html body :is(.preview-label,.preview-note,.step-meta,.price-time,.case-card figcaption,.price-note){color:var(--ink-dim);font-size:max(14px,1em)}
+html body .preview-note,html body .case-card figcaption{font-size:14px}
+html body .quiz-progress{font-size:15px;font-weight:600;color:var(--brand)}
+html body .review-quiz legend{font-size:clamp(20px,2.2vw,26px);line-height:1.25;color:var(--brand)}
+/* единая ширина колонок текста */
+html body #faq .wrap>*,html body #pricing .price-note{max-width:860px;margin-inline:auto}
+/* мобильная версия короче */
+@media(max-width:600px){
+  html body section{padding:44px 0}
+  html body .case-card p:nth-of-type(n+3){display:none}
+  html body .cases{gap:34px}
+}
