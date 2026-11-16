@@ -45,3 +45,4 @@ html body #faq .wrap>*,html body #pricing .price-note{max-width:860px;margin-inl
   html body .case-card .screenshot-link{flex:0 0 78%;scroll-snap-align:start}
   html body .case-card .project-preview{padding:12px}
 }
+@media(max-width:600px){html body .cases>.case-card.reveal{opacity:1!important;transform:none!important;transition:none!important}}
